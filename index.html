@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MooVe 369</title>
+  <link rel="stylesheet" href="style/main.css" />
+  <link rel="icon" href="assets/logo.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #0f0;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      margin-top: 60px;
+    }
+
+    .logo {
+      width: 180px;
+      margin-bottom: 30px;
+      transition: opacity 2s ease;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .btn {
+      background: #0f0;
+      color: #000;
+      font-weight: bold;
+      padding: 15px 30px;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #00cc00;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .notificacao-moove {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #111;
+      color: #0f0;
+      padding: 15px 25px;
+      border: 2px solid #0f0;
+      border-radius: 15px;
+      font-size: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      z-index: 9999;
+    }
+
+    @keyframes vibrar {
+      0% { transform: translateX(-50%) translateY(-10px); }
+      25% { transform: translateX(-51%) translateY(-10px); }
+      50% { transform: translateX(-49%) translateY(-10px); }
+      75% { transform: translateX(-50%) translateY(-11px); }
+      100% { transform: translateX(-50%) translateY(-10px); }
+    }
+
+    .notificacao-moove.visivel {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-10px);
+      animation: vibrar 0.4s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <img src="assets/logo.png" alt="Logo MooVe" class="logo" id="logo">
+
+    <div class="btn-group hidden" id="btnGroup">
+      <a href="pages/login.html?tipo=motorista" class="btn">🚘 Sou Motorista</a>
+      <a href="pages/login.html?tipo=passageiro" class="btn">🧍‍♂️ Sou Passageiro</a>
+      <a href="pages/login.html?tipo=gestor" class="btn">📊 Sou Gestor</a>
+      <a href="pages/login.html?tipo=empresa" class="btn">🏢 Sou Empresa</a>
+    </div>
+  </div>
+
+  <div class="notificacao-moove" id="notificacaoMoove">
+    Bem-vindo ao MooVe 369!
+  </div>
+
+  <script>
+    function mostrarNotificacao(mensagem) {
+      const notificacao = document.getElementById("notificacaoMoove");
+      notificacao.textContent = mensagem;
+      notificacao.classList.add("visivel");
+
+      setTimeout(() => {
+        notificacao.classList.remove("visivel");
+      }, 3000);
+    }
+
+    // Efeito fade-in da logo e mostrar botões
+    window.addEventListener('DOMContentLoaded', () => {
+      const logo = document.getElementById('logo');
+      const btnGroup = document.getElementById('btnGroup');
+
+      logo.classList.add('fade-in');
+      setTimeout(() => {
+        btnGroup.classList.remove('hidden');
+        mostrarNotificacao("Bem-vindo ao MooVe 369!");
+      }, 1500);
+    });
+  </script>
+</body>
+</html>

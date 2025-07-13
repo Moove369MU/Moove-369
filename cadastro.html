@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Motorista - MooVe 369</title>
+  <link rel="stylesheet" href="../style/main.css">
+  <style>
+    body {
+      background-color: #000;
+      color: #00ff88;
+      font-family: 'Poppins', sans-serif;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    input[type="file"] {
+      background-color: #111;
+      color: #fff;
+    }
+
+    button {
+      margin-top: 30px;
+      width: 100%;
+      background-color: #00ff88;
+      color: #000;
+      border: none;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #avisoAno {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Cadastro de Motorista</h1>
+
+  <form id="cadastroMotorista">
+
+    <!-- Dados pessoais -->
+    <label for="nome">Nome completo:</label>
+    <input type="text" id="nome" name="nome" required>
+
+    <label for="endereco">Endereço completo:</label>
+    <input type="text" id="endereco" name="endereco" required>
+
+    <label for="cpf">CPF:</label>
+    <input type="text" id="cpf" name="cpf" required>
+
+    <label for="rg">RG:</label>
+    <input type="text" id="rg" name="rg" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="telefone">Telefone:</label>
+    <input type="tel" id="telefone" name="telefone" required>
+
+    <label for="fotoSelfie">Foto Selfie (em tempo real):</label>
+    <input type="file" id="fotoSelfie" name="fotoSelfie" accept="image/*" required>
+
+    <label for="antecedentes">Antecedentes Criminais (PDF ou imagem):</label>
+    <input type="file" id="antecedentes" name="antecedentes" accept=".pdf,image/*" required>
+
+    <label for="senha">Senha:</label>
+    <input type="password" id="senha" name="senha" required>
+
+    <label for="confirmarSenha">Confirmar senha:</label>
+    <input type="password" id="confirmarSenha" name="confirmarSenha" required>
+
+    <!-- Dados do veículo -->
+    <label for="cnh">CNH com EAR:</label>
+    <input type="file" id="cnh" name="cnh" accept="image/*" required>
+
+    <label for="fotoCNH">Foto da CNH (frente):</label>
+    <input type="file" id="fotoCNH" name="fotoCNH" accept="image/*" required>
+
+    <label for="crlv">Foto do CRLV:</label>
+    <input type="file" id="crlv" name="crlv" accept="image/*" required>
+
+    <label for="fotoFrente">Foto do veículo (frente):</label>
+    <input type="file" id="fotoFrente" name="fotoFrente" accept="image/*" required>
+
+    <label for="fotoLateralEsq">Foto do veículo (lateral esquerda):</label>
+    <input type="file" id="fotoLateralEsq" name="fotoLateralEsq" accept="image/*" required>
+
+    <label for="fotoLateralDir">Foto do veículo (lateral direita):</label>
+    <input type="file" id="fotoLateralDir" name="fotoLateralDir" accept="image/*" required>
+
+    <label for="fotoTraseira">Foto do veículo (traseira com placa):</label>
+    <input type="file" id="fotoTraseira" name="fotoTraseira" accept="image/*" required>
+
+    <label for="fotoFrenteComPlaca">Foto do veículo (frente com placa):</label>
+    <input type="file" id="fotoFrenteComPlaca" name="fotoFrenteComPlaca" accept="image/*" required>
+
+    <label for="marca">Marca do carro:</label>
+    <input type="text" id="marca" name="marca" required>
+
+    <label for="modelo">Modelo:</label>
+    <input type="text" id="modelo" name="modelo" required>
+
+    <label for="ano">Ano do veículo:</label>
+    <input type="number" id="ano" name="ano" required min="2007" max="2025" oninput="verificarAno()">
+    <div id="avisoAno" class="hidden"></div>
+
+    <label for="seguro">Possui seguro?</label>
+    <select id="seguro" name="seguro" required>
+      <option value="">Selecione</option>
+      <option value="sim">Sim</option>
+      <option value="nao">Não</option>
+    </select>
+
+    <button type="submit">Finalizar Cadastro</button>
+  </form>
+
+  <script>
+    function verificarAno() {
+      const ano = parseInt(document.getElementById("ano").value);
+      const aviso = document.getElementById("avisoAno");
+
+      if (ano >= 2014) {
+        aviso.textContent = "✅ Veículo dentro do padrão exigido. Cadastro liberado.";
+        aviso.style.color = "#00ff88";
+        aviso.classList.remove("hidden");
+      } else if (ano >= 2007 && ano < 2014) {
+        aviso.textContent = "⚠️ Seu veículo será analisado em até 48h. Ele pode ser aprovado se estiver em ótimo estado.";
+        aviso.style.color = "orange";
+        aviso.classList.remove("hidden");
+      } else {
+        aviso.textContent = "❌ Veículos abaixo de 2007 não são aceitos conforme as regras da cidade.";
+        aviso.style.color = "red";
+        aviso.classList.remove("hidden");
+      }
+    }
+  </script>
+</body>
+</html>

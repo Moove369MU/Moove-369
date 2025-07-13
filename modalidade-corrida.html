@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Escolher Tipo de Veículo - MooVe 369</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+    header {
+      background-color: #0f0;
+      padding: 16px;
+      text-align: center;
+      color: #000;
+      font-weight: bold;
+      font-size: 20px;
+      box-shadow: 0 0 10px #0f0;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      background: #111;
+      border: 2px solid #0f0;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #0f0;
+    }
+    .card img {
+      width: 50px;
+      margin-bottom: 10px;
+    }
+    .card span {
+      display: block;
+      font-weight: bold;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header>🚘 Escolher Veículo / Modalidade</header>
+  <div class="container">
+    <div class="card"><img src="icons/moto.png" alt="Moto"><span>Moto</span></div>
+    <div class="card"><img src="icons/carro.png" alt="Carro"><span>Carro</span></div>
+    <div class="card"><img src="icons/van.png" alt="Van"><span>Van</span></div>
+    <div class="card"><img src="icons/caminhonete.png" alt="Caminhonete"><span>Caminhonete</span></div>
+    <div class="card"><img src="icons/caminhao.png" alt="Caminhão"><span>Caminhão</span></div>
+    <div class="card"><img src="icons/carreta.png" alt="Carreta Toco"><span>Carreta Toco</span></div>
+    <div class="card"><img src="icons/carreta-ls.png" alt="Carreta LS"><span>Carreta LS</span></div>
+    <div class="card"><img src="icons/bitrem.png" alt="Bitrem"><span>Bitrem</span></div>
+    <div class="card"><img src="icons/rodotrem.png" alt="Rodotrem"><span>Rodotrem</span></div>
+  </div>
+</body>
+</html>
